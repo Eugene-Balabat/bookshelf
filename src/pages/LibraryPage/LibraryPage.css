@@ -1,0 +1,54 @@
+.content-items {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 20px;
+
+  padding: 0 20px;
+}
+
+#content {
+  max-width: 700px;
+  margin: auto;
+  padding: 30px 30px;
+}
+
+#page-body {
+  margin-top: 60px;
+  background-color: #f8f9fd;
+}
+
+.page-navigation {
+  text-align: center;
+  margin: 30px 0;
+
+  border-top: 2px solid darkblue;
+  border-bottom: 2px solid darkblue;
+}
+
+.page-navigation button {
+  background-color: transparent;
+  border: 0;
+  user-select: none;
+  margin: 0 20%;
+  font-size: 20px;
+  font-weight: bold;
+  color: darkblue;
+}
+
+.page-navigation button:active {
+  color: #3b7efe;
+}
+
+.page-navigation button:hover {
+  cursor: pointer;
+}
+
+.page-navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-navigation li {
+  display: inline-block;
+}

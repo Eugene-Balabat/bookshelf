@@ -1,0 +1,31 @@
+.serach-bar {
+  display: flex;
+}
+
+#sort-list {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  margin-left: auto;
+  background-color: #f8f9fd;
+  border: 1px solid #dadbe3;
+  border-radius: 15px;
+  width: 20%;
+  outline: none;
+  box-sizing: unset;
+  padding-left: 10px;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+#search-input {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  background-color: #f8f9fd;
+  padding: 8px 13px;
+  border-radius: 15px;
+  border: 1px solid #dadbe3;
+  width: 65%;
+  outline: none;
+}

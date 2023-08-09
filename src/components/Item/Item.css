@@ -1,0 +1,47 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  width: 150px;
+  background-color: #fff;
+  border-radius: 15px;
+  border: 1px solid darkblue;
+}
+
+.item:active {
+  border-bottom: 2px solid darkblue;
+  border-top: 2px solid darkblue;
+}
+
+.item img {
+  max-width: 100%;
+}
+
+.item-genre {
+  margin: 5px 15px;
+  text-align: center;
+  width: fit-content;
+  padding: 3px 5px;
+  background-color: aqua;
+  border-radius: 5px;
+  color: black;
+}
+
+.item-title {
+  margin: 0;
+  padding: 5px 15px;
+  color: #bbbbc6;
+}
+
+.item-author {
+  margin: 0;
+  color: #5a5c75;
+  padding: 5px 15px;
+}
+
+.item-raiting {
+  text-align: right;
+  color: #bbbbc6;
+  margin: 0;
+  padding: 5px 15px;
+}
