@@ -1,6 +1,17 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 12px;
+}
+
+#content {
+  max-width: 700px;
+  margin: auto;
+  padding: 30px 30px;
+}
+
+#page-body {
+  margin-top: 60px;
+  background-color: #f8f9fd;
 }
 
 a,

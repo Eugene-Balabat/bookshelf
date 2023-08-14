@@ -7,9 +7,10 @@ const Item = () => {
     <div className="item">
       <img src={image} alt="No data" />
       <h3 className="item-raiting">5.0</h3>
-      <p className="item-genre">You can now</p>
-      <h4 className="item-title">You can now view bookshelf in the browser.</h4>
-      <b className="item-author">Bookshelf in the browser.</b>
+
+      <h4 className="item-title">Title of book</h4>
+      <h3 className="item-author">Author of book</h3>
+      <p className="item-description">Lorem ipsum dolor sit amet consectetur adipisicing ederit perspicistrum Lorem..</p>
     </div>
   )
 }

@@ -1,0 +1,16 @@
+.page-navigation {
+  text-align: center;
+  margin: 30px 0 15px 0;
+}
+
+.page-navigation li {
+  display: inline-block;
+  user-select: none;
+  margin: 0 15%;
+}
+
+.page-navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

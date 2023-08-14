@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import './NavBar.css'
+import './AppNavBar.css'
 import logo from '../../assets/logo.png'
 
-const NavBar = () => {
+const AppNavBar = () => {
   return (
     <header>
       <div className="nav-bar">
@@ -35,4 +35,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default AppNavBar

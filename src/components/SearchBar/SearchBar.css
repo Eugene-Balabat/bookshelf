@@ -3,11 +3,9 @@
 }
 
 #sort-list {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 12px;
   margin-left: auto;
   background-color: #f8f9fd;
-  border: 1px solid #dadbe3;
+  border: 2px solid #dadbe3;
   border-radius: 15px;
   width: 20%;
   outline: none;
@@ -20,12 +18,14 @@
 }
 
 #search-input {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 12px;
   background-color: #f8f9fd;
   padding: 8px 13px;
   border-radius: 15px;
-  border: 1px solid #dadbe3;
+  border: 2px solid #dadbe3;
   width: 65%;
   outline: none;
+}
+
+#search-input:focus {
+  border: 2px solid #3b7efe;
 }

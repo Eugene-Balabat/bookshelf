@@ -1,16 +1,18 @@
 import { BrowserRouter } from 'react-router-dom'
 import './App.css'
 import AppRouter from './app-router'
-import NavBar from './components/NavBar/NavBar'
+import AppNavBar from './components/AppNavBar/AppNavBar'
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar />
-
-        <AppRouter />
-
+        <AppNavBar />
+        <div id="page-body">
+          <div id="content">
+            <AppRouter />
+          </div>
+        </div>
         <footer>
           <p>Developed by Yevhen Balabat, 2023</p>
         </footer>
