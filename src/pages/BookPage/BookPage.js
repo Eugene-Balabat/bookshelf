@@ -10,7 +10,7 @@ const BookPage = () => {
     <div className="item-page">
       <div className="header-item-bar">
         <NavButton className="back-button" symbol="<" backCallback={() => navigate(-1)} />
-        <button className="page-button like-button">Like</button>
+        <button className="page-button add-button">Add</button>
       </div>
 
       <div className="item-content">

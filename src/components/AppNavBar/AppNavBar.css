@@ -1,48 +1,42 @@
-.nav-bar {
+.header-nav-bar {
   display: flex;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   width: 100%;
   background: #fff;
   align-items: center;
-  justify-content: center;
   padding: 10px 0;
 }
 
-.nav-bar img {
+.header-nav-bar img {
   max-width: 100%;
 }
 
 .profile {
-  margin-left: auto;
   padding: 0 10px;
 }
 
 .logo {
   width: 40px;
-  margin-right: auto;
 }
 
-.nav-bar {
-  text-align: center;
-}
-
-.nav-bar ul {
+.header-nav-bar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.nav-bar li {
+.header-nav-bar li {
   display: inline-block;
   padding: 0 20px;
 }
 
-.nav-bar .link {
+.header-nav-bar .link {
   color: black;
   font-weight: bold;
 }
 
-.nav-bar .link:active {
+.header-nav-bar .link:active {
   color: #3b7efe;
 }

@@ -24,7 +24,26 @@ a:active,
   color: #3b7efe;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
+footer p {
+  width: fit-content;
+  font-weight: bold;
+  margin: 5% auto;
+}
+
+@media screen and (min-width: 1025px) {
+  * {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1921px) {
+  * {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1281px) {
+  #content {
+    max-width: 1000px;
+  }
 }

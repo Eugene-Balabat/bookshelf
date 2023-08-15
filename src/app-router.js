@@ -7,6 +7,7 @@ import BookPage from './pages/BookPage/BookPage'
 function AppRouter() {
   return (
     <Routes>
+      <Route path="/" element={<LibraryPage />} />
       <Route path="/library" element={<LibraryPage />} />
       <Route path="/book" element={<BookPage />} />
       <Route path="/books" element={<LibraryPage />} />

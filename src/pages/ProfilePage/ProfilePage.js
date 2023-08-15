@@ -18,23 +18,31 @@ const ProfilePage = () => {
           <img src={image} alt="User image" />
         </label>
 
-        <div className="profile-block">
-          <label htmlFor="profile-name" className="profile-lable">
-            Your name
-          </label>
-          <input type="text" id="profile-name" className="profile-input" value="User name" />
-        </div>
-        <div className="profile-block">
-          <label htmlFor="profile-email" className="profile-lable">
-            Your email
-          </label>
-          <input type="email" id="profile-email" className="profile-input" value="User email" />
-        </div>
-        <div className="profile-block block-age">
-          <label htmlFor="profile-age" className="profile-lable">
-            Your age
-          </label>
-          <input type="number" id="profile-age" className="profile-input" defaultValue="25" min="1" max="120" />
+        <div className="profile-inputs">
+          <div className="profile-block">
+            <label htmlFor="profile-name" className="profile-lable">
+              Name
+            </label>
+            <input type="text" id="profile-name" className="profile-input" placeholder="Type user name" />
+          </div>
+          <div className="profile-block">
+            <label htmlFor="profile-email" className="profile-lable">
+              Email
+            </label>
+            <input type="email" id="profile-email" className="profile-input" placeholder="Type user email" />
+          </div>
+          <div className="profile-block">
+            <label htmlFor="profile-password" className="profile-lable">
+              Password
+            </label>
+            <input type="password" id="profile-password" className="profile-input" placeholder="Type user password" />
+          </div>
+          <div className="profile-block block-age">
+            <label htmlFor="profile-age" className="profile-lable">
+              Age
+            </label>
+            <input type="number" id="profile-age" className="profile-input" defaultValue="25" min="1" max="120" />
+          </div>
         </div>
         <button className="page-button save-profile-button">Save</button>
       </form>
