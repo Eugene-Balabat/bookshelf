@@ -13,7 +13,8 @@
 }
 
 .item-content img {
-  max-width: 40%;
+  width: 40%;
+  max-width: 250px;
   border-radius: 10px;
   display: block;
 }
@@ -22,4 +23,44 @@
   text-indent: 20px;
   text-align: justify;
   line-height: 200%;
+}
+
+.item-rating-value {
+  font-weight: bold;
+}
+
+.item-rating-value-disabled {
+  opacity: 0.5;
+}
+
+.item-rating-value label {
+  color: black;
+}
+
+.item-rating-value h1 {
+  margin: 0 5px;
+}
+
+.item-rating-number-value {
+  background-color: inherit;
+  width: 100px;
+  border: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.item-rating-number-value:focus {
+  outline: none;
+}
+
+.remove-button:hover {
+  border-color: red;
+  color: red;
+}
+
+@media screen and (min-width: 541px) {
+  .item-rating-slider {
+    width: 150px;
+    height: 10px;
+  }
 }

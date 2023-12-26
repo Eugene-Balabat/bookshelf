@@ -59,12 +59,13 @@
 
 .profile-lable-file {
   display: flex;
+  user-select: none;
   width: 150px;
   justify-content: center;
 }
 
 .profile-lable-file img:hover {
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 @media screen and (min-width: 1025px) {

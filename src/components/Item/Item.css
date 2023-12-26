@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 5px;
   margin: 10px auto;
+  padding: 5px 5px;
 
   width: 150px;
   border-radius: 10px;
@@ -12,34 +13,31 @@
 }
 
 .item:active {
-  border-bottom: 2px solid red;
-  border-top: 2px solid red;
+  border-bottom: 2px solid #3b7efe;
+  border-top: 2px solid #3b7efe;
 }
 
 .item img {
   max-width: 100%;
+  border-radius: 10px;
+  /* border-top-left-radius: 10px;
+  border-top-right-radius: 10px; */
 }
 
 .item-title {
   margin: 0;
-  padding: 0 5px;
-  color: #bbbbc6;
+  text-align: center;
+  color: #5a5c75;
 }
 
 .item-author {
-  margin: 0;
-  color: #5a5c75;
-  padding: 0 5px;
+  margin: 5px 5px;
+  color: #bbbbc6;
 }
 
 .item-raiting {
   text-align: right;
-  color: #bbbbc6;
+  color: #5a5c75;
   margin: 0;
   padding: 0 10px;
-}
-
-.item-description {
-  margin: 10px 5px;
-  font-weight: bold;
 }
