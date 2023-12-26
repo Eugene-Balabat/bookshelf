@@ -1,7 +1,7 @@
 {
   "name": "bookshelf",
   "version": "0.1.0",
-  "homepage": "https://eugene-balabat.github.io/bookslist",
+  "homepage": "https://eugene-balabat.github.io/bookshelf",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",

@@ -7,11 +7,11 @@ import LibraryPage from './pages/LibraryPage/LibraryPage'
 function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<BooksListPage />} />
-      <Route path="/bookslist" element={<BooksListPage />} />
-      <Route path="/library" element={<LibraryPage />} />
-      <Route path="/works/:workId" element={<BookPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="bookshelf/" element={<BooksListPage />} />
+      <Route path="bookshelf/bookslist" element={<BooksListPage />} />
+      <Route path="bookshelf/library" element={<LibraryPage />} />
+      <Route path="bookshelf/works/:workId" element={<BookPage />} />
+      <Route path="bookshelf/profile" element={<ProfilePage />} />
     </Routes>
   )
 }

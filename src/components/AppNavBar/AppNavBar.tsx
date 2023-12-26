@@ -6,19 +6,19 @@ const AppNavBar = () => {
   return (
     <header className="header-nav-bar">
       <div className="logo">
-        <Link to="/bookslist" className="link">
+        <Link to="bookshelf/bookslist" className="link">
           <img src={logo} alt="Logo" />{' '}
         </Link>
       </div>
       <nav>
         <ul>
           <li>
-            <Link to="/bookslist" className="link">
+            <Link to="bookshelf/bookslist" className="link">
               Books
             </Link>
           </li>
           <li>
-            <Link to="/library" className="link">
+            <Link to="bookshelf/library" className="link">
               Library
             </Link>
           </li>
@@ -26,7 +26,7 @@ const AppNavBar = () => {
       </nav>
 
       <div className="profile">
-        <Link to="/profile" className="link">
+        <Link to="bookshelf/profile" className="link">
           Profile
         </Link>
       </div>
