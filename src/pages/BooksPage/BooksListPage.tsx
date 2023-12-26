@@ -129,7 +129,7 @@ const BooksListPage = () => {
                 if (element.key) {
                   if (!isLengthStringNotAllowed(element.title)) {
                     return (
-                      <Link key={element.key + 'link'} to={element.key}>
+                      <Link key={element.key + 'link'} to={`/${process.env.REACT_APP_KEYWORD_APP as string}${element.key}`}>
                         {
                           <Item
                             key={element.key + 'item'}

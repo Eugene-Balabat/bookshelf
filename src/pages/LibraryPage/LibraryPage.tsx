@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import './LibraryPage.css'
 import Item from '../../components/Item/Item'
-import SearchBar from '../../components/SearchBar/SearchBar'
 import PaginationNavBar from '../../components/PageNavBar/PaginationNavBar'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import booksListPageService from '../BooksPage/books-list-page.service'
@@ -20,8 +19,7 @@ const LibraryPage = () => {
 
   const changeCurrentPageToBackOne = () => {
     if (libraryList.length) {
-      const newPageNumber = currentPageNumber > 1 ? currentPageNumber - 1 : currentPageNumber
-      dispatch(changeCurrentLibraryPageAC(newPageNumber))
+      currentPageNumber > 1 && dispatch(changeCurrentLibraryPageAC(currentPageNumber - 1))
     }
   }
 
@@ -80,11 +78,16 @@ const LibraryPage = () => {
   }, [libraryList])
 
   useEffect(() => {
+    console.log(libraryList)
     if (isLoading) {
       setStateNavBackButton(false)
       setStateNavNextButton(false)
     } else setCalculatedNavButtonsState()
   }, [isLoading])
+
+  useEffect(() => {
+    setCalculatedNavButtonsState()
+  }, [pageList])
 
   useEffect(() => {
     setPageListFC()
@@ -115,7 +118,7 @@ const LibraryPage = () => {
               pageList.map((element: any) => {
                 if (element.authors.length && element.title && element.key) {
                   return (
-                    <Link key={element.key + 'link'} to={element.key}>
+                    <Link key={element.key + 'link'} to={`/${process.env.REACT_APP_KEYWORD_APP as string}${element.key}`}>
                       {
                         <Item
                           key={element.key + 'item'}

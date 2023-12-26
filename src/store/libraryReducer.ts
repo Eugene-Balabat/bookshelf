@@ -29,7 +29,7 @@ const initialState: LibraryState = {
     error: '',
   },
   searchInput: '',
-  limitWorksOnPage: 5,
+  limitWorksOnPage: 10,
   currentPageNumber: 1,
 }
 

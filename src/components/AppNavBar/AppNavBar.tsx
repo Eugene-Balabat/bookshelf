@@ -7,7 +7,7 @@ const AppNavBar = () => {
     <header className="header-nav-bar">
       <div className="logo">
         <Link to="bookshelf/bookslist" className="link">
-          <img src={logo} alt="Logo" />{' '}
+          <img src={logo} alt="Logo" />
         </Link>
       </div>
       <nav>

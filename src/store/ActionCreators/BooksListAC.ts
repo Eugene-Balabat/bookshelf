@@ -200,15 +200,16 @@ export const addRatingToBookListLS = (ratingData: { key: string; rating: number 
   const localStorageBooksListKeysString = localStorage.getItem(process.env.REACT_APP_BOOKS_BOOKSLIST_LS_KEY as string)
   const parsedData = localStorageBooksListKeysString ? JSON.parse(localStorageBooksListKeysString) : {}
 
-  localStorage.setItem(
-    process.env.REACT_APP_BOOKS_BOOKSLIST_LS_KEY as string,
-    JSON.stringify({
-      ...parsedData,
-      works: parsedData.works.length
-        ? parsedData.works.map((parsedElement: any) =>
-            parsedElement.key === ratingData.key ? { ...parsedElement, userRating: ratingData.rating } : { ...parsedElement },
-          )
-        : [],
-    }),
-  )
+  parsedData.works &&
+    localStorage.setItem(
+      process.env.REACT_APP_BOOKS_BOOKSLIST_LS_KEY as string,
+      JSON.stringify({
+        ...parsedData,
+        works: parsedData.works.length
+          ? parsedData.works.map((parsedElement: any) =>
+              parsedElement.key === ratingData.key ? { ...parsedElement, userRating: ratingData.rating } : { ...parsedElement },
+            )
+          : [],
+      }),
+    )
 }
