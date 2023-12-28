@@ -2,25 +2,6 @@ import { booksSlice } from '../booksReducer'
 import { AppDispatchType } from '../store'
 import BooksListPageService from '../../pages/BooksPage/books-list-page.service'
 
-// export const fetchBooksListAC = (urlList: Array<{ url: string }>) => async (dispatch: AppDispatchType) => {
-//   try {
-//     dispatch(librarySlice.actions.booksFetching())
-
-//     const localArr: Array<object> = []
-//     for (const element of urlList) {
-//       const response = await (await fetch(element.url)).json()
-//       localArr.push(response)
-//     }
-
-//     console.log(localArr)
-//     dispatch(librarySlice.actions.booksFetchingSuccess(localArr))
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       dispatch(librarySlice.actions.booksFetchingError(error.message))
-//     }
-//   }
-// }
-
 export const fetchTrendingWeeklyBooksAC = () => async (dispatch: AppDispatchType) => {
   try {
     dispatch(booksSlice.actions.booksFetching())

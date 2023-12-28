@@ -1,6 +1,6 @@
 .page-navigation {
   text-align: center;
-  margin: 30px 10px 15px;
+  padding: 30px 10px;
 }
 
 .page-navigation ul {
@@ -14,4 +14,9 @@
 
 .page-navigation li {
   user-select: none;
+}
+
+.page-navigation-value {
+  margin: auto 0;
+  font-weight: bold;
 }

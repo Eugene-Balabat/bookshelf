@@ -3,7 +3,7 @@ import './BooksListPage.css'
 import Item from '../../components/Item/Item'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import PaginationNavBar from '../../components/PageNavBar/PaginationNavBar'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import BooksListPageService from './books-list-page.service'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
@@ -18,8 +18,12 @@ import {
 const BooksListPage = () => {
   const { currentPageNumber, searchInput, sortBar, currentSortKey, limitWorksOnPage, countOfWorks } = useAppSelector((state) => state.books)
   const { bookList, isLoading } = useAppSelector((state) => state.books.content)
+
   const [stateNavBackButton, setStateNavBackButton] = useState<boolean>(true)
   const [stateNavNextButton, setStateNavNextButton] = useState<boolean>(true)
+  const [stateProcessBar, setStateProcessBar] = useState<Array<string>>([])
+
+  const loadingSymbol = '●'
 
   const dispatch = useAppDispatch()
 
@@ -80,6 +84,18 @@ const BooksListPage = () => {
     searchInput ? setStateNavNextButton(isPossiblyNextPage(currentPageNumber) ? true : false) : setStateNavNextButton(true)
   }
 
+  const changeProcessBar = () => {
+    let iterator = stateProcessBar.findIndex((element) => element === loadingSymbol)
+    const newProcessBarState = [...stateProcessBar]
+
+    window.setTimeout(() => {
+      newProcessBarState[iterator] = ''
+      iterator = iterator + 1 >= newProcessBarState.length ? 0 : iterator + 1
+      newProcessBarState[iterator] = loadingSymbol
+      setStateProcessBar([...newProcessBarState])
+    }, 800)
+  }
+
   useEffect(() => {
     if (!isLoading) {
       const wokrsItem = localStorage.getItem(process.env.REACT_APP_BOOKS_BOOKSLIST_LS_KEY as string)
@@ -93,10 +109,18 @@ const BooksListPage = () => {
 
   useEffect(() => {
     if (isLoading) {
+      setStateProcessBar([loadingSymbol, '', ''])
       setStateNavBackButton(false)
       setStateNavNextButton(false)
-    } else setCalculatedNavButtonsState()
+    } else {
+      setStateProcessBar([])
+      setCalculatedNavButtonsState()
+    }
   }, [isLoading])
+
+  useEffect(() => {
+    stateProcessBar.length && changeProcessBar()
+  }, [stateProcessBar])
 
   useEffect(() => {
     if (!bookList.length && currentPageNumber !== 1) {
@@ -122,10 +146,11 @@ const BooksListPage = () => {
           changeCurrentPageToBackOne={changeCurrentPageToBackOne}
           changeCurrentPageToNextOne={changeCurrentPageToNextOne}
         />
-        <div className="items-grid">
-          {!isLoading ? (
-            bookList.length ? (
-              bookList.map((element: any) => {
+
+        {!isLoading ? (
+          bookList.length ? (
+            <div className="items-grid">
+              {bookList.map((element: any) => {
                 if (element.key) {
                   if (!isLengthStringNotAllowed(element.title)) {
                     return (
@@ -143,14 +168,21 @@ const BooksListPage = () => {
                     )
                   }
                 }
-              })
-            ) : (
-              <p>Data does not exist</p>
-            )
+              })}
+            </div>
           ) : (
-            <p>Page is loading.</p>
-          )}
-        </div>
+            <div className="content-load-faild">
+              <p>Data does not exist.</p>
+            </div>
+          )
+        ) : (
+          <div className="content-load">
+            {stateProcessBar.map((element) => {
+              return <span>{element}</span>
+            })}
+          </div>
+        )}
+
         <PaginationNavBar
           stateNavButtons={{ backButton: stateNavBackButton, nextButton: stateNavNextButton }}
           currentPageNumber={currentPageNumber}

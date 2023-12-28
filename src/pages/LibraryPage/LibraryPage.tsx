@@ -14,6 +14,9 @@ const LibraryPage = () => {
   const [pageList, setPageList] = useState<Array<object>>([])
   const [stateNavBackButton, setStateNavBackButton] = useState<boolean>(true)
   const [stateNavNextButton, setStateNavNextButton] = useState<boolean>(true)
+  const [stateProcessBar, setStateProcessBar] = useState<Array<string>>([])
+
+  const loadingSymbol = '●'
 
   const dispatch = useAppDispatch()
 
@@ -27,6 +30,18 @@ const LibraryPage = () => {
     if (libraryList.length) {
       isPossiblyNextPage(currentPageNumber) && dispatch(changeCurrentLibraryPageAC(currentPageNumber + 1))
     }
+  }
+
+  const changeProcessBar = () => {
+    let iterator = stateProcessBar.findIndex((element) => element === loadingSymbol)
+    const newProcessBarState = [...stateProcessBar]
+
+    window.setTimeout(() => {
+      newProcessBarState[iterator] = ''
+      iterator = iterator + 1 >= newProcessBarState.length ? 0 : iterator + 1
+      newProcessBarState[iterator] = loadingSymbol
+      setStateProcessBar([...newProcessBarState])
+    }, 800)
   }
 
   const isPossiblyNextPage = (pageNumber: number) => {
@@ -46,6 +61,7 @@ const LibraryPage = () => {
 
     if (localStorageLibraryKeysString) {
       const localStorageLibraryKeysParsed = JSON.parse(localStorageLibraryKeysString)
+      console.log(localStorageLibraryKeysParsed)
 
       localStorageLibraryKeysParsed.length ? dispatch(fetchExistingLibraryBooksAC(localStorageLibraryKeysParsed)) : dispatch(setInitialStateAC())
     }
@@ -78,12 +94,16 @@ const LibraryPage = () => {
   }, [libraryList])
 
   useEffect(() => {
-    console.log(libraryList)
     if (isLoading) {
+      setStateProcessBar([loadingSymbol, '', ''])
       setStateNavBackButton(false)
       setStateNavNextButton(false)
     } else setCalculatedNavButtonsState()
   }, [isLoading])
+
+  useEffect(() => {
+    stateProcessBar.length && changeProcessBar()
+  }, [stateProcessBar])
 
   useEffect(() => {
     setCalculatedNavButtonsState()
@@ -112,10 +132,11 @@ const LibraryPage = () => {
           changeCurrentPageToBackOne={changeCurrentPageToBackOne}
           changeCurrentPageToNextOne={changeCurrentPageToNextOne}
         />
-        <div className="items-grid">
-          {!isLoading ? (
-            pageList.length ? (
-              pageList.map((element: any) => {
+
+        {!isLoading ? (
+          pageList.length ? (
+            <div className="items-grid">
+              {pageList.map((element: any) => {
                 if (element.authors.length && element.title && element.key) {
                   return (
                     <Link key={element.key + 'link'} to={`/${process.env.REACT_APP_KEYWORD_APP as string}${element.key}`}>
@@ -131,14 +152,21 @@ const LibraryPage = () => {
                     </Link>
                   )
                 }
-              })
-            ) : (
-              <p>Data does not exist</p>
-            )
+              })}
+            </div>
           ) : (
-            <p>Page is loading.</p>
-          )}
-        </div>
+            <div className="content-load-faild">
+              <p>Data does not exist.</p>
+            </div>
+          )
+        ) : (
+          <div className="content-load">
+            {stateProcessBar.map((element) => {
+              return <span>{element}</span>
+            })}
+          </div>
+        )}
+
         <PaginationNavBar
           stateNavButtons={{ backButton: stateNavBackButton, nextButton: stateNavNextButton }}
           currentPageNumber={currentPageNumber}

@@ -17,7 +17,7 @@ const PaginationNavBar = ({ stateNavButtons, currentPageNumber, changeCurrentPag
         <li>
           <NavButton disabled={!stateNavButtons.backButton} symbol="<" changeCurrentPage={changeCurrentPageToBackOne} />
         </li>
-        <li>
+        <li className="page-navigation-value">
           <span>{`Page ${currentPageNumber}`}</span>
         </li>
         <li>
