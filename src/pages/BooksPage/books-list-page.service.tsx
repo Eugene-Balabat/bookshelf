@@ -21,6 +21,36 @@ class BooksListPageService {
         })
       : [...booksList]
   }
+
+  isLengthStringNotAllowed(str: string): boolean {
+    for (let charackterI = 0, characterCounter = 0; charackterI < str.length; charackterI += 1, characterCounter += 1) {
+      if (characterCounter === Number(process.env.REACT_APP_NUM_OF_CHARACKTER_ALLOWD as string)) {
+        return true
+      }
+
+      if (str[charackterI] === ' ') {
+        characterCounter = 0
+      }
+    }
+
+    return false
+  }
+
+  isPossiblyNextPage(pageNumber: number, limitWorksOnPage: number, countOfWorks: number) {
+    return Math.ceil(countOfWorks / limitWorksOnPage) >= pageNumber + 1
+  }
+
+  changeProcessBar(stateProcessBar: Array<string>, setStateProcessBar: (value: string[]) => void) {
+    let iterator = stateProcessBar.findIndex((element) => element === (process.env.REACT_APP_LOADING_SYMBOL as string))
+    const newProcessBarState = [...stateProcessBar]
+
+    window.setTimeout(() => {
+      newProcessBarState[iterator] = ''
+      iterator = iterator + 1 >= newProcessBarState.length ? 0 : iterator + 1
+      newProcessBarState[iterator] = process.env.REACT_APP_LOADING_SYMBOL as string
+      setStateProcessBar([...newProcessBarState])
+    }, 800)
+  }
 }
 
 export default new BooksListPageService()

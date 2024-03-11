@@ -3,7 +3,6 @@ import './NavButton.css'
 interface PropsNavButton {
   symbol: string
   disabled: boolean
-  className?: string
 
   changeCurrentPage: () => void
 }

@@ -36,7 +36,7 @@ const ProfilePage = () => {
   return (
     <div className="profile-page">
       <div className="header-profile-bar">
-        <NavButton disabled={false} className="back-button" symbol="<" changeCurrentPage={changeCurrentPageToBackOne} />
+        <NavButton disabled={false} symbol="<" changeCurrentPage={changeCurrentPageToBackOne} />
       </div>
 
       <form

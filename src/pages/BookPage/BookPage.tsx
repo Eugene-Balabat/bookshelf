@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import NavButton from '../../components/PageNavBar/NavButton/NavButton'
 import './BookPage.css'
 import image from '../../assets/no_data.jpg'
@@ -10,6 +10,20 @@ import { updateLibraryListKeys } from '../../store/ActionCreators/LibraryAC'
 import { fetchBookDataAC, changeRatingOfBookAC } from '../../store/ActionCreators/BookPageAC'
 import type { LibraryKeyData } from '../LibraryPage/interfaces/library-page.inreface'
 import { addRatingToBookListLS } from '../../store/ActionCreators/BooksListAC'
+
+const TAIComponent = memo(({ coverId, title, author }: { coverId: string; title: string; author: string }) => {
+  return (
+    <>
+      <img src={libraryPageService.getUrlImageL(coverId || '')} alt="Book image" />
+      <h1 className="item-title">{title}</h1>
+      <h3 className="item-author">{author}</h3>
+    </>
+  )
+})
+
+const DComponent = memo(({ description }: { description: string }) => {
+  return <p className="item-description book-description">{description}</p>
+})
 
 const BookPage = () => {
   const navigate = useNavigate()
@@ -67,7 +81,8 @@ const BookPage = () => {
   return (
     <div className="item-page">
       <div className="header-item-bar">
-        <NavButton disabled={false} className="back-button" symbol="<" changeCurrentPage={changeCurrentPageToBackOne} />
+        <NavButton disabled={false} symbol="<" changeCurrentPage={changeCurrentPageToBackOne} />
+
         <button
           disabled={
             rating < parseFloat(process.env.REACT_APP_MIN_BOOK_RATING as string) || rating > parseFloat(process.env.REACT_APP_MAX_BOOK_RATING as string)
@@ -86,9 +101,8 @@ const BookPage = () => {
       </div>
 
       <div className="item-content">
-        <img src={libraryPageService.getUrlImageL(coverId || '')} alt="Book image" />
-        <h1 className="item-title">{title}</h1>
-        <h3 className="item-author">{author}</h3>
+        <TAIComponent coverId={coverId} title={title} author={author} />
+
         <div className={`item-rating-value  ${addedStateBtn && 'item-rating-value-disabled'}`}>
           <label htmlFor="rating-value"> Rating:</label>
           <input
@@ -106,7 +120,8 @@ const BookPage = () => {
             }}
           />
         </div>
-        <p className="item-description book-description">{description}</p>
+
+        <DComponent description={description} />
       </div>
     </div>
   )

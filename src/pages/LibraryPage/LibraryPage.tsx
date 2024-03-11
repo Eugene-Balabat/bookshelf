@@ -3,7 +3,7 @@ import './LibraryPage.css'
 import Item from '../../components/Item/Item'
 import PaginationNavBar from '../../components/PageNavBar/PaginationNavBar'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import booksListPageService from '../BooksPage/books-list-page.service'
+import BooksListPageService from '../BooksPage/books-list-page.service'
 import { changeSearchLibraryInputAC, fetchExistingLibraryBooksAC, changeCurrentLibraryPageAC, setInitialStateAC } from '../../store/ActionCreators/LibraryAC'
 import { useEffect, useState } from 'react'
 
@@ -16,8 +16,6 @@ const LibraryPage = () => {
   const [stateNavNextButton, setStateNavNextButton] = useState<boolean>(true)
   const [stateProcessBar, setStateProcessBar] = useState<Array<string>>([])
 
-  const loadingSymbol = '●'
-
   const dispatch = useAppDispatch()
 
   const changeCurrentPageToBackOne = () => {
@@ -28,25 +26,26 @@ const LibraryPage = () => {
 
   const changeCurrentPageToNextOne = () => {
     if (libraryList.length) {
-      isPossiblyNextPage(currentPageNumber) && dispatch(changeCurrentLibraryPageAC(currentPageNumber + 1))
+      BooksListPageService.isPossiblyNextPage(currentPageNumber, limitWorksOnPage, libraryList.length) &&
+        dispatch(changeCurrentLibraryPageAC(currentPageNumber + 1))
     }
   }
 
-  const changeProcessBar = () => {
-    let iterator = stateProcessBar.findIndex((element) => element === loadingSymbol)
-    const newProcessBarState = [...stateProcessBar]
+  // const changeProcessBar = () => {
+  //   let iterator = stateProcessBar.findIndex((element) => element === (process.env.REACT_APP_NUM_OF_CHARACKTER_ALLOWD as string))
+  //   const newProcessBarState = [...stateProcessBar]
 
-    window.setTimeout(() => {
-      newProcessBarState[iterator] = ''
-      iterator = iterator + 1 >= newProcessBarState.length ? 0 : iterator + 1
-      newProcessBarState[iterator] = loadingSymbol
-      setStateProcessBar([...newProcessBarState])
-    }, 800)
-  }
+  //   window.setTimeout(() => {
+  //     newProcessBarState[iterator] = ''
+  //     iterator = iterator + 1 >= newProcessBarState.length ? 0 : iterator + 1
+  //     newProcessBarState[iterator] = process.env.REACT_APP_NUM_OF_CHARACKTER_ALLOWD as string
+  //     setStateProcessBar([...newProcessBarState])
+  //   }, 800)
+  // }
 
-  const isPossiblyNextPage = (pageNumber: number) => {
-    return Math.ceil(libraryList.length / limitWorksOnPage) >= pageNumber + 1
-  }
+  // const isPossiblyNextPage = (pageNumber: number) => {
+  //   return Math.ceil(libraryList.length / limitWorksOnPage) >= pageNumber + 1
+  // }
 
   const changeBooksSearchInput = (value: string) => {
     dispatch(changeSearchLibraryInputAC(value))
@@ -61,8 +60,6 @@ const LibraryPage = () => {
 
     if (localStorageLibraryKeysString) {
       const localStorageLibraryKeysParsed = JSON.parse(localStorageLibraryKeysString)
-      console.log(localStorageLibraryKeysParsed)
-
       localStorageLibraryKeysParsed.length ? dispatch(fetchExistingLibraryBooksAC(localStorageLibraryKeysParsed)) : dispatch(setInitialStateAC())
     }
   }
@@ -82,7 +79,7 @@ const LibraryPage = () => {
 
   const setCalculatedNavButtonsState = () => {
     setStateNavBackButton(currentPageNumber === 1 ? false : true)
-    setStateNavNextButton(isPossiblyNextPage(currentPageNumber) ? true : false)
+    setStateNavNextButton(BooksListPageService.isPossiblyNextPage(currentPageNumber, limitWorksOnPage, libraryList.length) ? true : false)
   }
 
   useEffect(() => {
@@ -95,14 +92,14 @@ const LibraryPage = () => {
 
   useEffect(() => {
     if (isLoading) {
-      setStateProcessBar([loadingSymbol, '', ''])
+      setStateProcessBar([process.env.REACT_APP_LOADING_SYMBOL as string, '', ''])
       setStateNavBackButton(false)
       setStateNavNextButton(false)
     } else setCalculatedNavButtonsState()
   }, [isLoading])
 
   useEffect(() => {
-    stateProcessBar.length && changeProcessBar()
+    stateProcessBar.length && BooksListPageService.changeProcessBar(stateProcessBar, setStateProcessBar)
   }, [stateProcessBar])
 
   useEffect(() => {
@@ -143,7 +140,7 @@ const LibraryPage = () => {
                       {
                         <Item
                           key={element.key + 'item'}
-                          imageUrl={element.covers ? booksListPageService.getUrlImageM(element.covers[0]) : undefined}
+                          imageUrl={element.covers ? BooksListPageService.getUrlImageM(element.covers[0]) : undefined}
                           title={element.title || 'Title'}
                           author={element.authorName || 'Author'}
                           rating={element.rating || 0}

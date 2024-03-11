@@ -1,6 +1,5 @@
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, memo } from 'react'
 import './SearchBar.css'
-import logo from '../../assets/logo.png'
 import { useAppSelector } from '../../hooks/redux'
 import _ from 'lodash'
 
@@ -9,6 +8,7 @@ interface SearchBarProps {
   sortBarData: Array<string>
   currentSortValue: string
   disabled: boolean
+
   sendSearchRequest: () => void
   changeSortOption: (keyWord: string) => void
   changeSearchInput: (value: string) => void
@@ -16,6 +16,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ value, sortBarData, currentSortValue, disabled, sendSearchRequest, changeSortOption, changeSearchInput }: SearchBarProps) => {
   const { isSortBarDisabled } = useAppSelector((state) => state.books)
+
   // const searchString = value?.trim().replace(/ /g, '+')
 
   const sendRequest = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -54,4 +55,14 @@ const SearchBar = ({ value, sortBarData, currentSortValue, disabled, sendSearchR
   )
 }
 
-export default SearchBar
+export default memo(SearchBar, (prevProps, nextProps) => {
+  if (
+    prevProps.disabled !== nextProps.disabled ||
+    prevProps.currentSortValue !== nextProps.currentSortValue ||
+    JSON.stringify(prevProps.sortBarData) !== JSON.stringify(nextProps.sortBarData) ||
+    prevProps.value !== nextProps.value
+  ) {
+    return false
+  }
+  return true
+})

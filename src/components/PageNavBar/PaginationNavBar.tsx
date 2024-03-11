@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import NavButton from './NavButton/NavButton'
 import './PaginationNavBar.css'
 import { NavButtonInterface } from './interfaces/pagination.inreface'
@@ -28,4 +29,13 @@ const PaginationNavBar = ({ stateNavButtons, currentPageNumber, changeCurrentPag
   )
 }
 
-export default PaginationNavBar
+export default memo(PaginationNavBar, (prevProps, nextProps) => {
+  if (
+    prevProps.currentPageNumber !== nextProps.currentPageNumber ||
+    prevProps.stateNavButtons.backButton !== nextProps.stateNavButtons.backButton ||
+    prevProps.stateNavButtons.nextButton !== nextProps.stateNavButtons.nextButton
+  ) {
+    return false
+  }
+  return true
+})

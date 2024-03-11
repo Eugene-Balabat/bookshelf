@@ -23,8 +23,6 @@ const BooksListPage = () => {
   const [stateNavNextButton, setStateNavNextButton] = useState<boolean>(true)
   const [stateProcessBar, setStateProcessBar] = useState<Array<string>>([])
 
-  const loadingSymbol = '●'
-
   const dispatch = useAppDispatch()
 
   const changeCurrentPageToBackOne = () => {
@@ -37,13 +35,10 @@ const BooksListPage = () => {
   const changeCurrentPageToNextOne = () => {
     if (bookList.length) {
       searchInput
-        ? isPossiblyNextPage(currentPageNumber) && dispatch(changeCurrentBooksPageAC(searchInput, currentPageNumber + 1, currentSortKey))
+        ? BooksListPageService.isPossiblyNextPage(currentPageNumber, limitWorksOnPage, countOfWorks) &&
+          dispatch(changeCurrentBooksPageAC(searchInput, currentPageNumber + 1, currentSortKey))
         : dispatch(changeCurrentBooksPageAC(searchInput, currentPageNumber + 1, currentSortKey))
     }
-  }
-
-  const isPossiblyNextPage = (pageNumber: number) => {
-    return Math.ceil(countOfWorks / limitWorksOnPage) >= pageNumber + 1
   }
 
   const changeBooksSearchInput = (value: string) => {
@@ -63,37 +58,11 @@ const BooksListPage = () => {
     dispatch(changeSortOptionAC(searchInput, currentPageNumber, keyWord))
   }
 
-  const isLengthStringNotAllowed = (str: string): boolean => {
-    const numOfCharactersAllowed = 25
-
-    for (let charackterI = 0, characterCounter = 0; charackterI < str.length; charackterI += 1, characterCounter += 1) {
-      if (characterCounter === numOfCharactersAllowed) {
-        return true
-      }
-
-      if (str[charackterI] === ' ') {
-        characterCounter = 0
-      }
-    }
-
-    return false
-  }
-
   const setCalculatedNavButtonsState = () => {
     setStateNavBackButton(currentPageNumber === 1 ? false : true)
-    searchInput ? setStateNavNextButton(isPossiblyNextPage(currentPageNumber) ? true : false) : setStateNavNextButton(true)
-  }
-
-  const changeProcessBar = () => {
-    let iterator = stateProcessBar.findIndex((element) => element === loadingSymbol)
-    const newProcessBarState = [...stateProcessBar]
-
-    window.setTimeout(() => {
-      newProcessBarState[iterator] = ''
-      iterator = iterator + 1 >= newProcessBarState.length ? 0 : iterator + 1
-      newProcessBarState[iterator] = loadingSymbol
-      setStateProcessBar([...newProcessBarState])
-    }, 800)
+    searchInput
+      ? setStateNavNextButton(BooksListPageService.isPossiblyNextPage(currentPageNumber, limitWorksOnPage, countOfWorks) ? true : false)
+      : setStateNavNextButton(true)
   }
 
   useEffect(() => {
@@ -109,17 +78,16 @@ const BooksListPage = () => {
 
   useEffect(() => {
     if (isLoading) {
-      setStateProcessBar([loadingSymbol, '', ''])
+      setStateProcessBar([process.env.REACT_APP_LOADING_SYMBOL as string, '', ''])
       setStateNavBackButton(false)
       setStateNavNextButton(false)
     } else {
-      setStateProcessBar([])
       setCalculatedNavButtonsState()
     }
   }, [isLoading])
 
   useEffect(() => {
-    stateProcessBar.length && changeProcessBar()
+    isLoading && BooksListPageService.changeProcessBar(stateProcessBar, setStateProcessBar)
   }, [stateProcessBar])
 
   useEffect(() => {
@@ -152,7 +120,7 @@ const BooksListPage = () => {
             <div className="items-grid">
               {bookList.map((element: any) => {
                 if (element.key) {
-                  if (!isLengthStringNotAllowed(element.title)) {
+                  if (!BooksListPageService.isLengthStringNotAllowed(element.title)) {
                     return (
                       <Link key={element.key + 'link'} to={`/${process.env.REACT_APP_KEYWORD_APP as string}${element.key}`}>
                         {
