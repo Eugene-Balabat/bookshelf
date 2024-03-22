@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
-import './App.css'
+import './App.scss'
 import AppRouter from './app-router'
 import AppNavBar from './components/AppNavBar/AppNavBar'
 

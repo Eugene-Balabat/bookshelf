@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent, memo } from 'react'
-import './SearchBar.css'
+import './SearchBar.scss'
 import { useAppSelector } from '../../hooks/redux'
 import _ from 'lodash'
 
@@ -33,7 +33,7 @@ const SearchBar = ({ value, sortBarData, currentSortValue, disabled, sendSearchR
     <div className="serach-bar">
       <input
         type="serach"
-        id="search-input"
+        className="serach-bar__input search-input"
         value={value}
         disabled={disabled}
         onKeyUp={sendRequest}

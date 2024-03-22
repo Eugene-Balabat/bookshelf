@@ -1,0 +1,68 @@
+.content__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.book-header {
+  .remove-button {
+    &:hover {
+      border-color: red;
+      color: red;
+    }
+  }
+}
+
+.content__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.book-inner {
+  margin-top: 20px;
+
+  &__rating {
+    font-weight: bold;
+
+    label {
+      color: black;
+    }
+
+    &--disabled {
+      opacity: 0.5;
+    }
+  }
+
+  &__description {
+    text-indent: 20px;
+    text-align: justify;
+    line-height: 200%;
+  }
+
+  img {
+    width: 40%;
+    max-width: 250px;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .rating {
+    h1 {
+      margin: 0 5px;
+    }
+
+    &__value {
+      background-color: inherit;
+      width: 100px;
+      border: 0;
+      font-weight: bold;
+      text-align: center;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

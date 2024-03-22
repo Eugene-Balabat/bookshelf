@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-import './AppNavBar.css'
+import './AppNavBar.scss'
 import logo from '../../assets/logo.png'
 
 const AppNavBar = () => {
   return (
-    <header className="header-nav-bar">
-      <div className="logo">
+    <header className="header-application">
+      <div className="header__logo">
         <Link to="bookshelf/bookslist" className="link">
           <img src={logo} alt="Logo" />
         </Link>
@@ -25,7 +25,7 @@ const AppNavBar = () => {
         </ul>
       </nav>
 
-      <div className="profile">
+      <div className="header__profile">
         <Link to="bookshelf/profile" className="link">
           Profile
         </Link>

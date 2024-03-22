@@ -9,16 +9,16 @@
   align-items: center;
   justify-content: center;
   gap: 25px;
-}
 
-.content-load-faild {
-  display: flex;
-  justify-content: center;
-}
+  &--faild {
+    display: flex;
+    justify-content: center;
+  }
 
-.content-load span {
-  font-weight: bold;
-  font-size: small;
+  span {
+    font-weight: bold;
+    font-size: small;
+  }
 }
 
 @media screen and (min-width: 481px) {
@@ -31,11 +31,12 @@
   .items-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .content-load span {
-    font-size: medium;
-  }
   .content-load {
     gap: 35px;
+
+    span {
+      font-size: medium;
+    }
   }
 }
 
@@ -58,10 +59,11 @@
   .items-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-  .content-load span {
-    font-size: large;
-  }
   .content-load {
     gap: 120px;
+
+    span {
+      font-size: large;
+    }
   }
 }

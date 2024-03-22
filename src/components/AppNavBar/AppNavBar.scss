@@ -1,0 +1,44 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  align-items: center;
+  padding: 10px 0;
+
+  img {
+    max-width: 100%;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    padding: 0 20px;
+  }
+
+  .link {
+    color: black;
+    font-weight: bold;
+
+    &:active {
+      color: #3b7efe;
+    }
+  }
+
+  .header {
+    &__profile {
+      padding: 0 10px;
+    }
+
+    &__logo {
+      width: 40px;
+    }
+  }
+}

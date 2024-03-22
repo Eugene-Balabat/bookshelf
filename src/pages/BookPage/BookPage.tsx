@@ -1,6 +1,6 @@
 import React, { useState, memo } from 'react'
 import NavButton from '../../components/PageNavBar/NavButton/NavButton'
-import './BookPage.css'
+import './BookPage.scss'
 import image from '../../assets/no_data.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
@@ -22,7 +22,7 @@ const TAIComponent = memo(({ coverId, title, author }: { coverId: string; title:
 })
 
 const DComponent = memo(({ description }: { description: string }) => {
-  return <p className="item-description book-description">{description}</p>
+  return <p className="book-inner__description">{description}</p>
 })
 
 const BookPage = () => {
@@ -79,8 +79,8 @@ const BookPage = () => {
   }
 
   return (
-    <div className="item-page">
-      <div className="header-item-bar">
+    <>
+      <div className="content__header book-header">
         <NavButton disabled={false} symbol="<" changeCurrentPage={changeCurrentPageToBackOne} />
 
         <button
@@ -92,7 +92,7 @@ const BookPage = () => {
           className={`page-button ${
             rating >= parseFloat(process.env.REACT_APP_MIN_BOOK_RATING as string) &&
             rating <= parseFloat(process.env.REACT_APP_MAX_BOOK_RATING as string) &&
-            `page-activ-button`
+            `page-button--activ`
           } ${addedStateBtn ? `remove-button` : `add-button`}`}
           onClick={addedStateBtn ? removeBookFromLibrary : addBookToLibrary}
         >
@@ -100,17 +100,17 @@ const BookPage = () => {
         </button>
       </div>
 
-      <div className="item-content">
+      <div className="content__inner book-inner">
         <TAIComponent coverId={coverId} title={title} author={author} />
 
-        <div className={`item-rating-value  ${addedStateBtn && 'item-rating-value-disabled'}`}>
-          <label htmlFor="rating-value"> Rating:</label>
+        <div className={`book-inner__rating ${addedStateBtn && 'book-inner__rating--disabled'} rating`}>
+          <label htmlFor="id-rating-value"> Rating:</label>
           <input
             type="number"
-            id="rating-value"
+            id="id-rating-value"
             name="quantity"
             disabled={addedStateBtn ? true : false}
-            className={`item-rating-number-value`}
+            className={`rating__value`}
             min={process.env.REACT_APP_MIN_BOOK_RATING}
             max={process.env.REACT_APP_MAX_BOOK_RATING}
             value={rating || 0}
@@ -123,7 +123,7 @@ const BookPage = () => {
 
         <DComponent description={description} />
       </div>
-    </div>
+    </>
   )
 }
 

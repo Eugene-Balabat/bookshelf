@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './BooksListPage.css'
+import './BooksListPage.scss'
 import Item from '../../components/Item/Item'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import PaginationNavBar from '../../components/PageNavBar/PaginationNavBar'
@@ -139,7 +139,7 @@ const BooksListPage = () => {
               })}
             </div>
           ) : (
-            <div className="content-load-faild">
+            <div className="content-load--faild">
               <p>Data does not exist.</p>
             </div>
           )

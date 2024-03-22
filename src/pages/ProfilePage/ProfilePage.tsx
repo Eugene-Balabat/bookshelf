@@ -1,5 +1,5 @@
 import NavButton from '../../components/PageNavBar/NavButton/NavButton'
-import './ProfilePage.css'
+import './ProfilePage.scss'
 import image from '../../assets/no_data.jpg'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -34,8 +34,8 @@ const ProfilePage = () => {
   }, [])
 
   return (
-    <div className="profile-page">
-      <div className="header-profile-bar">
+    <>
+      <div className="body__profile-header profile-header">
         <NavButton disabled={false} symbol="<" changeCurrentPage={changeCurrentPageToBackOne} />
       </div>
 
@@ -45,9 +45,9 @@ const ProfilePage = () => {
           event.preventDefault()
           saveProfileData()
         }}
-        className="profile-content"
+        className="body__profile-content profile-content"
       >
-        <label htmlFor="profile-input-file" className="profile-lable-file">
+        <label htmlFor="profile-input-file" className="profile-content__file block-file">
           {/* <input
             type="file"
             name="profile-input-file"
@@ -63,36 +63,32 @@ const ProfilePage = () => {
           <img src={image} alt="User image" />
         </label>
 
-        <div className="profile-inputs">
-          <div className="profile-block">
-            <label htmlFor="profile-name" className="profile-lable">
-              Name
-            </label>
+        <div className="profile-content__inputs profile-inputs">
+          <div className="profile-inputs__block inputs-block">
+            <label htmlFor="profile-input-name">Name</label>
             <input
               type="text"
-              id="profile-name"
+              id="profile-input-name"
               value={profileContent.name}
               onChange={(event) => {
                 setProfileContent({ ...profileContent, name: event.target.value })
               }}
               name="name"
               key="name"
-              className="profile-input"
+              className="inputs-block__item inputs-item"
               placeholder="Type user name"
             />
           </div>
-          <div className="profile-block">
-            <label htmlFor="profile-email" className="profile-lable">
-              Email
-            </label>
+          <div className="profile-inputs__block inputs-block">
+            <label htmlFor="profile-input-email">Email</label>
             <input
               type="email"
-              id="profile-email"
+              id="profile-input-email"
               value={profileContent.email}
               onChange={(event) => {
                 setProfileContent({ ...profileContent, email: event.target.value })
               }}
-              className="profile-input"
+              className="inputs-block__item inputs-item"
               placeholder="Type user email"
             />
           </div>
@@ -102,26 +98,24 @@ const ProfilePage = () => {
             </label>
             <input type="password" id="profile-password" className="profile-input" placeholder="Type user password" />
           </div> */}
-          <div className="profile-block block-age">
-            <label htmlFor="profile-age" className="profile-lable">
-              Age
-            </label>
+          <div className="profile-inputs__block inputs-block inputs-block--age">
+            <label htmlFor="profile-input-age">Age</label>
             <input
               type="number"
-              id="profile-age"
+              id="profile-input-age"
               value={profileContent.age}
               onChange={(event) => {
                 setProfileContent({ ...profileContent, age: event.target.value })
               }}
-              className="profile-input"
+              className="inputs-block__item inputs-item"
               min="1"
               max="120"
             />
           </div>
         </div>
-        <button className="page-button save-profile-button">Save</button>
+        <button className="page-button page-button--activ profile-content__button">Save</button>
       </form>
-    </div>
+    </>
   )
 }
 

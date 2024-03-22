@@ -1,0 +1,30 @@
+.page-button {
+  border-style: solid;
+  padding: 5px 15px;
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--activ {
+    border-color: #dadbe3;
+    background-color: #ecf7f5;
+    color: #63bbad;
+
+    &:hover {
+      border-color: #3b7efe;
+      color: #3b7efe;
+    }
+  }
+
+  &--disabled {
+    border-color: #999999;
+    background-color: #cccccc;
+    color: #666666;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+}

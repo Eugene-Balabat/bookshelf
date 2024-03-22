@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import NavButton from './NavButton/NavButton'
-import './PaginationNavBar.css'
+import './PaginationNavBar.scss'
 import { NavButtonInterface } from './interfaces/pagination.inreface'
 
 interface PaginationNavBarProps {
@@ -18,7 +18,7 @@ const PaginationNavBar = ({ stateNavButtons, currentPageNumber, changeCurrentPag
         <li>
           <NavButton disabled={!stateNavButtons.backButton} symbol="<" changeCurrentPage={changeCurrentPageToBackOne} />
         </li>
-        <li className="page-navigation-value">
+        <li className="page-navigation__value">
           <span>{`Page ${currentPageNumber}`}</span>
         </li>
         <li>

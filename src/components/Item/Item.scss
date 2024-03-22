@@ -1,0 +1,43 @@
+.content-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px 5px;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.item {
+  width: 150px;
+  margin: 10px auto;
+  border-bottom: 2px solid darkblue;
+  border-top: 2px solid darkblue;
+
+  &:active {
+    border-bottom: 2px solid #3b7efe;
+    border-top: 2px solid #3b7efe;
+  }
+
+  &__title {
+    margin: 0;
+    text-align: center;
+    color: #5a5c75;
+  }
+
+  &__author {
+    margin: 5px 5px;
+    color: #bbbbc6;
+  }
+
+  &__raiting {
+    text-align: right;
+    color: #5a5c75;
+    margin: 0;
+    padding: 0 10px;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+}

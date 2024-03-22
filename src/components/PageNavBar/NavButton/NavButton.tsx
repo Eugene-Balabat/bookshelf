@@ -1,4 +1,4 @@
-import './NavButton.css'
+import './NavButton.scss'
 
 interface PropsNavButton {
   symbol: string
@@ -9,7 +9,7 @@ interface PropsNavButton {
 
 const NavButton = ({ disabled, symbol, changeCurrentPage }: PropsNavButton) => {
   return (
-    <button disabled={disabled} className={`page-button ${disabled ? 'page-disabled-button' : 'page-activ-button'} `} onClick={changeCurrentPage}>
+    <button disabled={disabled} className={`page-button ${disabled ? 'page-button--disabled' : 'page-button--activ'} `} onClick={changeCurrentPage}>
       {symbol}
     </button>
   )
